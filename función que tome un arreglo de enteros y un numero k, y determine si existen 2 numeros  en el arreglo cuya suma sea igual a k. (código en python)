@@ -1,0 +1,47 @@
+def tiene_suma_k(arreglo, k):
+    # Creamos un conjunto para almacenar los números que hemos visto
+    numeros_vistos = set()
+    
+    # Recorremos el arreglo
+    for num in arreglo:
+        # Calculamos el complemento necesario para que la suma sea k
+        complemento = k - num
+        
+        # Si el complemento está en el conjunto de números vistos, significa que encontramos una pareja que suma k
+        if complemento in numeros_vistos:
+            # Devolvemos los números que suman k
+            return True, complemento, num
+        
+        # Agregamos el número actual al conjunto de números vistos
+        numeros_vistos.add(num)
+    
+    # Si llegamos aquí, no se encontraron parejas que sumen k
+    return False, None, None
+
+# Función para ingresar el arreglo por consola
+def ingresar_arreglo():
+    arreglo = input("Ingresa los elementos del arreglo separados por espacio: ")
+    # Convertimos los elementos ingresados a una lista de enteros
+    arreglo = list(map(int, arreglo.split()))
+    return arreglo
+
+# Función principal
+def main():
+    # Ingresar el arreglo por consola
+    arreglo = ingresar_arreglo()
+    
+    # Ingresar el valor de k por consola
+    k = int(input("Ingresa el valor de k: "))
+    
+    # Verificar si existe una suma igual a k en el arreglo
+    existe_suma, num1, num2 = tiene_suma_k(arreglo, k)
+    
+    # Mostrar el resultado
+    if existe_suma:
+        print(f"Sí existen dos números en el arreglo que suman {k}: {num1} y {num2}")
+    else:
+        print("No existen dos números en el arreglo que sumen", k)
+
+# Llamar a la función principal
+if __name__ == "__main__":
+    main()
